@@ -65,6 +65,11 @@
     & + .social-block__list {
       opacity: 1;
       pointer-events: auto;
+
+      li {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   }
 
@@ -140,11 +145,25 @@
   .social-block--active & {
     opacity: 1;
     pointer-events: auto;
+
+    li {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
 
   li {
     flex: none;
     margin-bottom: 0.5rem;
+    transform: translateY(10px);
+    transition: transform 0.3s, opacity 0.3s;
+    opacity: 0;
+
+    @for $i from 1 through 3 {
+      &:nth-child(#{$i}) {
+        transition-delay: $i * 0.1s;
+      }
+    }
 
     @media (min-width: $stop-scaling) {
       margin-bottom: 5px;
